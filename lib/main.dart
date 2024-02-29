@@ -1,42 +1,107 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const AppMiTabBar());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class AppMiTabBar extends StatelessWidget {
+  const AppMiTabBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+      title: 'Ejemplo TabBar Arias',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // useMaterial3: true,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: DefaultTabController(
+        length: 4, // Ajustar la longitud del TabController
+        child: MiPaginaInicial(),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class MiPaginaInicial extends StatefulWidget {
+  const MiPaginaInicial({Key? key}) : super(key: key);
 
+  @override
+  State<MiPaginaInicial> createState() => _MiPaginaInicialState();
+}
+
+class _MiPaginaInicialState extends State<MiPaginaInicial> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+        title: const Text("Alexander Arias"),
+        centerTitle: true,
+        bottom: TabBar(
+          tabs: [
+            Tab(
+              text: "Prod",
+              icon: Icon(Icons.shopping_bag),
+            ),
+            Tab(
+              text: "Mas",
+              icon: Icon(Icons.add),
+            ),
+            Tab(
+              text: "Opcion 3",
+              icon: Icon(Icons.do_not_disturb_on),
+            ),
+            Tab(
+              text: "Opcion 4",
+              icon: Icon(Icons.dynamic_feed),
+            ),
+          ],
         ),
+      ),
+      body: TabBarView(
+        children: <Widget>[
+          // Widget para la pestaña de "Productos"
+          Center(
+            child: Text(
+              "Opcion 1",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+                fontSize: 24, // Cambia el tamaño del texto aquí
+              ),
+            ),
+          ),
+          // Widget para la pestaña de "Mas"
+          Center(
+            child: Text(
+              "Opcion 2",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+                fontSize: 24, // Cambia el tamaño del texto aquí
+              ),
+            ),
+          ),
+          // Otras dos opciones de Center
+          Center(
+            child: Text(
+              "Opción 3",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+                fontSize: 24, // Cambia el tamaño del texto aquí
+              ),
+            ),
+          ),
+          Center(
+            child: Text(
+              "Opción 4",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+                fontSize: 24, // Cambia el tamaño del texto aquí
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
